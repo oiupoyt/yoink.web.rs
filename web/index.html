@@ -1,19 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>yoink</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yoink — video downloader</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <div id="app">
-        <div class="card">
-            <h1>yoink</h1>
-            <input type="text" id="url" placeholder="https://youtube.com/watch?v=…">
-            <button id="yoink">yoink</button>
-            <div id="queue"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div id="status-container">
+    <div id="status-indicator"></div>
+    <span id="status-text">Connecting...</span>
+  </div>
+  
+  <main class="container">
+    <header class="header">
+      <pre class="ascii-logo">
+█ █  █▀█  ▀█▀  █▀█  █ █  █▀▀
+▀█▀  █ █   █   █ █  █▀▄  ▀▀█
+ ▀   ▀▀▀  ▀▀▀  ▀ ▀  ▀ ▀  ▀▀▀</pre>
+      <h1 class="title">yoink</h1>
+      <p class="tagline">yoink any video. paste. yoink. done.</p>
+    </header>
+
+    <section class="card input-card">
+      <form id="yoink-form" class="form">
+        <div class="input-row">
+          <input type="url" id="url-input" class="text-input" placeholder="Paste link here..." required>
+          <button type="submit" id="submit-btn" class="btn btn-yoink">YOINK</button>
         </div>
-    </div>
-    <script src="app.js"></script>
+
+        <div class="options-row">
+          <div class="custom-select" id="format-select">
+            <div class="select-header">Best Available (MP4)</div>
+            <ul class="select-options" hidden>
+              <li data-value="best">Best Available (MP4)</li>
+              <li data-value="1080p">1080p · MP4</li>
+              <li data-value="720p">720p · MP4</li>
+              <li data-value="audio">Audio only · MP3</li>
+            </ul>
+          </div>
+          
+          <label class="custom-checkbox">
+            <input type="checkbox" id="playlist-check">
+            <span class="checkbox-box"></span>
+            Entire playlist
+          </label>
+        </div>
+      </form>
+      <div id="form-error" class="error-msg" hidden></div>
+    </section>
+
+    <section class="downloads-section">
+      <div id="queue-list" class="queue-list"></div>
+    </section>
+  </main>
+  <script src="/animation.js"></script>
+  <script src="/app.js"></script>
 </body>
 </html>

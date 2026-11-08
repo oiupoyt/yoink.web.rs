@@ -1,4 +1,4 @@
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use std::process::Stdio;
 use tokio::process::Command;
 
@@ -29,19 +29,15 @@ pub async fn run_probe(ytdlp: &Path, url: &str) -> Result<ProbeResult, YoinkErro
     let mut info: VideoInfo = serde_json::from_value(raw_val)?;
     info.is_playlist = is_playlist;
 
-    let info_json_path = match tempfile::Builder::new()
-        .prefix("yoink-info-")
-        .suffix(".json")
-        .tempfile()
-    {
-        Ok(named) => {
-            let path = named.into_temp_path();
-            let p = path.to_path_buf();
-            // keep temp file on disk for reuse during download
-            let _ = tokio::fs::write(&p, stdout_str.as_bytes()).await;
+    let info_json_path = {
+        use std::time::{SystemTime, UNIX_EPOCH};
+        let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_millis();
+        let p = std::env::temp_dir().join(format!("yoink-info-{}-{}.json", std::process::id(), now));
+        if tokio::fs::write(&p, stdout_str.as_bytes()).await.is_ok() {
             Some(p)
+        } else {
+            None
         }
-        Err(_) => None,
     };
 
     let choices = build_choices(&info);

@@ -13,6 +13,11 @@ crossterm = "0.28"
 serde_json = "1"
 arboard = "3"
 atty = "0.2"
+directories = "5"
+
+[lib]
+name = "yoink_cli"
+path = "src/lib.rs"
 
 [[bin]]
 name = "yoink"

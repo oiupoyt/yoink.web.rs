@@ -98,7 +98,7 @@ pub fn build_choices(info: &VideoInfo) -> Vec<DownloadChoice> {
                 label: format!("{}p · mp4{}", h, size_label),
                 args: vec![
                     "-f".to_string(),
-                    format!("bv*[height={}]+ba/b[height={}]/bv*[height<={}] +ba/b", h, h, h),
+                    format!("bv*[height={}]+ba/b[height={}]/bv*[height<={}] +ba/b", h, h, h).replace(' ', ""),
                     "--merge-output-format".to_string(),
                     "mp4".to_string(),
                 ],

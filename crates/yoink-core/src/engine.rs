@@ -41,8 +41,12 @@ impl Downloader for YtDlpEngine {
         let handle = tokio::spawn(async move {
             let mut args = Vec::new();
             if let Some(json_path) = &req.info_json_path {
-                args.push("--load-info-json".to_string());
-                args.push(json_path.to_string_lossy().to_string());
+                if json_path.exists() {
+                    args.push("--load-info-json".to_string());
+                    args.push(json_path.to_string_lossy().to_string());
+                } else {
+                    args.push(req.url.clone());
+                }
             } else {
                 args.push(req.url.clone());
             }
@@ -67,8 +71,10 @@ impl Downloader for YtDlpEngine {
             ]);
 
             if let Some(ffmpeg) = find_ffmpeg().await {
-                args.push("--ffmpeg-location".to_string());
-                args.push(ffmpeg.to_string_lossy().to_string());
+                if ffmpeg.is_absolute() {
+                    args.push("--ffmpeg-location".to_string());
+                    args.push(ffmpeg.to_string_lossy().to_string());
+                }
             }
 
             let _ = tx.send(ProgressEvent::Starting);
