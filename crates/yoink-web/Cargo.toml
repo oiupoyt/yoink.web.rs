@@ -15,3 +15,7 @@ ipnet = "2"
 tracing = "0.1"
 tracing-subscriber = "0.3"
 uuid = { version = "1", features = ["v4"] }
+
+[[bin]]
+name = "yoink-web"
+path = "src/main.rs"
