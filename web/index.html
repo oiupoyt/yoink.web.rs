@@ -3,58 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>yoink — video downloader</title>
+  <title>yoink — minimal video downloader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <canvas id="bg-canvas"></canvas>
-  <div id="status-container">
-    <div id="status-indicator"></div>
-    <span id="status-text">Connecting...</span>
-  </div>
-  
+  <canvas id="particles"></canvas>
+
   <main class="container">
     <header class="header">
       <pre class="ascii-logo">
 █ █  █▀█  ▀█▀  █▀█  █ █  █▀▀
 ▀█▀  █ █   █   █ █  █▀▄  ▀▀█
  ▀   ▀▀▀  ▀▀▀  ▀ ▀  ▀ ▀  ▀▀▀</pre>
-      <h1 class="title">yoink</h1>
-      <p class="tagline">yoink any video. paste. yoink. done.</p>
+      <h1>yoink</h1>
+      <div class="subtitle-row">
+        <span class="subtitle">// paste. yoink. done.</span>
+        <span class="status-sep">•</span>
+        <div id="backendStatus" class="backend-status" title="Click to refresh status">
+          <span class="status-dot"></span>
+          <span id="statusText" class="status-text">connecting...</span>
+        </div>
+      </div>
     </header>
 
-    <section class="card input-card">
+    <div class="card yoink-box">
       <form id="yoink-form" class="form">
         <div class="input-row">
-          <input type="url" id="url-input" class="text-input" placeholder="Paste link here..." required>
-          <button type="submit" id="submit-btn" class="btn btn-yoink">YOINK</button>
+          <input
+            type="url"
+            id="url-input"
+            class="text-input"
+            placeholder="paste video link here (youtube, x, tiktok, instagram…)"
+            required
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button type="submit" id="submit-btn" class="btn btn-yoink">yoink</button>
         </div>
 
-        <div class="options-row">
-          <div class="custom-select" id="format-select">
-            <div class="select-header">Best Available (MP4)</div>
-            <ul class="select-options" hidden>
-              <li data-value="best">Best Available (MP4)</li>
-              <li data-value="1080p">1080p · MP4</li>
-              <li data-value="720p">720p · MP4</li>
-              <li data-value="audio">Audio only · MP3</li>
-            </ul>
+        <div class="format-toolbar">
+          <div class="format-chips" id="format-chips">
+            <button type="button" class="chip active" data-value="best">best video</button>
+            <button type="button" class="chip" data-value="1080p">1080p</button>
+            <button type="button" class="chip" data-value="720p">720p</button>
+            <button type="button" class="chip" data-value="480p">480p</button>
+            <button type="button" class="chip" data-value="audio">audio only (mp3)</button>
           </div>
-          
-          <label class="custom-checkbox">
-            <input type="checkbox" id="playlist-check">
-            <span class="checkbox-box"></span>
-            Entire playlist
-          </label>
+
+          <button type="button" id="playlist-toggle" class="chip playlist-chip">
+            <span class="chip-indicator"></span>
+            <span>entire playlist</span>
+          </button>
         </div>
       </form>
       <div id="form-error" class="error-msg" hidden></div>
-    </section>
+    </div>
 
     <section class="downloads-section">
-      <div id="queue-list" class="queue-list"></div>
+      <div class="section-header">
+        <h2>downloads</h2>
+        <span id="job-count" class="item-count">0 items</span>
+      </div>
+      <div id="queue-list" class="queue-list">
+        <div id="empty-state" class="empty-state">no active downloads</div>
+      </div>
     </section>
   </main>
+
+  <div id="toast" class="toast"></div>
+
   <script src="/animation.js"></script>
   <script src="/app.js"></script>
 </body>

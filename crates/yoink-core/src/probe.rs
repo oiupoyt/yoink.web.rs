@@ -8,8 +8,12 @@ use crate::platform::detect_platform;
 use crate::traits::ProbeResult;
 
 pub async fn run_probe(ytdlp: &Path, url: &str) -> Result<ProbeResult, YoinkError> {
+    let mut cmd_args = vec!["-J".to_string(), "--no-warnings".to_string()];
+    cmd_args.extend(crate::args_helper::build_common_ytdlp_args(None));
+    cmd_args.push(url.to_string());
+
     let output = Command::new(ytdlp)
-        .args(["-J", "--no-warnings", url])
+        .args(&cmd_args)
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
         .output()

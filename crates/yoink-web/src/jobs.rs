@@ -96,6 +96,17 @@ impl JobManager {
         format: String,
         _is_playlist: bool,
     ) -> Result<String, String> {
+        // Cache hit check
+        {
+            let jobs = self.jobs.read().await;
+            for job_arc in jobs.values() {
+                let j = job_arc.read().await;
+                if j.url == url && j.format == format && j.status == JobStatus::Completed {
+                    return Ok(j.id.clone());
+                }
+            }
+        }
+
         let jobs_read = self.jobs.read().await;
         if jobs_read.len() >= self.config.max_queue {
             return Err("Queue is full, try again later".to_string());
@@ -293,6 +304,44 @@ impl JobManager {
         let job_arc = jobs.get(id)?;
         let j = job_arc.read().await;
         Some(j.event_tx.subscribe())
+    }
+
+    pub async fn list_files(&self) -> Vec<JobView> {
+        let jobs = self.jobs.read().await;
+        let mut views = Vec::new();
+        for (id, job_arc) in jobs.iter() {
+            let j = job_arc.read().await;
+            if j.status == JobStatus::Completed {
+                views.push(JobView {
+                    id: id.clone(),
+                    url: j.url.clone(),
+                    format: j.format.clone(),
+                    status: j.status.clone(),
+                    filename: j.filename.clone(),
+                    filesize: j.filesize,
+                    error: j.error.clone(),
+                    progress: j.progress.clone(),
+                });
+            }
+        }
+        views
+    }
+
+    pub async fn mark_completed(
+        &self,
+        id: &str,
+        filepath: PathBuf,
+        filename: String,
+        size: u64,
+    ) {
+        let jobs = self.jobs.read().await;
+        if let Some(job_arc) = jobs.get(id) {
+            let mut j = job_arc.write().await;
+            j.status = JobStatus::Completed;
+            j.filepath = Some(filepath);
+            j.filename = Some(filename);
+            j.filesize = Some(size);
+        }
     }
 
     pub async fn cancel_job(&self, id: &str) -> bool {

@@ -70,6 +70,7 @@ async fn main() -> anyhow::Result<()> {
 
     let api_routes = Router::new()
         .route("/health", get(health_handler))
+        .route("/files", get(list_files_handler))
         .route("/jobs", post(create_job_handler))
         .route("/jobs/:id", get(get_job_handler))
         .route("/jobs/:id/events", get(sse_handler))
@@ -102,6 +103,11 @@ async fn health_handler() -> Json<HealthResponse> {
         status: "ok",
         ffmpeg_available: ffmpeg,
     })
+}
+
+async fn list_files_handler(State(state): State<AppState>) -> Json<Vec<JobView>> {
+    let files = state.jobs.list_files().await;
+    Json(files)
 }
 
 async fn create_job_handler(

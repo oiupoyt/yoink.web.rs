@@ -70,6 +70,8 @@ impl Downloader for YtDlpEngine {
                 req.out_dir.join("%(title).60s.%(ext)s").to_string_lossy().to_string(),
             ]);
 
+            args.extend(crate::args_helper::build_common_ytdlp_args(Some(&req.out_dir)));
+
             if let Some(ffmpeg) = find_ffmpeg().await {
                 if ffmpeg.is_absolute() {
                     args.push("--ffmpeg-location".to_string());

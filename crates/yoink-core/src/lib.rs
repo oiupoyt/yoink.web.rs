@@ -1,3 +1,4 @@
+pub mod args_helper;
 pub mod engine;
 pub mod error;
 pub mod ffmpeg;
@@ -9,6 +10,7 @@ pub mod probe;
 pub mod progress;
 pub mod traits;
 
+pub use crate::args_helper::build_common_ytdlp_args;
 pub use crate::engine::YtDlpEngine;
 pub use crate::error::YoinkError;
 pub use crate::ffmpeg::find_ffmpeg;
