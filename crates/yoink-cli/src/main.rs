@@ -3,6 +3,8 @@ use std::path::PathBuf;
 use yoink_core::YtDlpEngine;
 use yoink_core::traits::Downloader;
 
+mod tui;
+
 #[derive(Parser, Debug)]
 #[command(version, about = "yoink - A native Rust spiritual fork of yoinks")]
 pub struct Args {
@@ -31,7 +33,7 @@ async fn main() -> anyhow::Result<()> {
     if args.url.is_some() {
         run_flag_mode(args).await?;
     } else {
-        run_tui()?;
+        tui::run_tui()?;
     }
     
     Ok(())
@@ -69,9 +71,5 @@ async fn run_flag_mode(args: Args) -> anyhow::Result<()> {
     }
 
     handle.await??;
-    Ok(())
-}
-
-fn run_tui() -> anyhow::Result<()> {
     Ok(())
 }
