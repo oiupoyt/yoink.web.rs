@@ -1,6 +1,6 @@
 # yoink.web.rs
 
-A native Rust spiritual fork of the terminal video downloader `yoinks` (https://github.com/pablostanley/yoinks).
+A native Rust fork of the terminal video downloader `yoinks` (https://github.com/pablostanley/yoinks).
 
 > This is a Rust fork of [yoinks](https://github.com/pablostanley/yoinks).
 
