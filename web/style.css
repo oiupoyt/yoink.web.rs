@@ -7,8 +7,8 @@
 
 body {
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  background: #0b0b0b;
-  color: #e5e5e5;
+  background: #000000;
+  color: #ffffff;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -39,7 +39,7 @@ body {
 }
 
 .ascii-logo {
-  color: #fff;
+  color: #ffffff;
   font-size: 9px;
   line-height: 1.1;
   font-family: inherit;
@@ -52,7 +52,7 @@ h1 {
   font-size: 2.2rem;
   font-weight: 600;
   letter-spacing: -0.04em;
-  color: #fff;
+  color: #ffffff;
   margin-bottom: 4px;
 }
 
@@ -66,19 +66,19 @@ h1 {
 }
 
 .subtitle {
-  color: #555;
+  color: #777777;
   text-transform: lowercase;
 }
 
 .status-sep {
-  color: #333;
+  color: #333333;
 }
 
 .backend-status {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: #666;
+  color: #666666;
   font-size: 0.72rem;
   cursor: pointer;
   user-select: none;
@@ -86,41 +86,38 @@ h1 {
 }
 
 .backend-status:hover {
-  color: #999;
+  color: #ffffff;
 }
 
 .status-dot {
   width: 6px;
   height: 6px;
-  background: #444;
+  background: #444444;
   display: inline-block;
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .backend-status.online {
-  color: #4ade80;
+  color: #ffffff;
 }
 
 .backend-status.online .status-dot {
-  background: #4ade80;
-  box-shadow: 0 0 6px rgba(74, 222, 128, 0.45);
+  background: #ffffff;
 }
 
 .backend-status.offline {
-  color: #ff5555;
+  color: #777777;
 }
 
 .backend-status.offline .status-dot {
-  background: #ff5555;
-  box-shadow: 0 0 6px rgba(255, 85, 85, 0.45);
+  background: #777777;
 }
 
 /* Yoink Box */
 .yoink-box {
-  border: 1px dashed #2a2a2a;
+  border: 1px solid #282828;
   padding: 22px 20px;
-  background: rgba(15, 15, 15, 0.7);
-  backdrop-filter: blur(6px);
+  background: #000000;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
@@ -138,9 +135,9 @@ h1 {
 
 .text-input {
   flex: 1;
-  background: #111;
-  border: 1px solid #303030;
-  color: #fff;
+  background: #000000;
+  border: 1px solid #282828;
+  color: #ffffff;
   padding: 10px 14px;
   font-family: inherit;
   font-size: 0.82rem;
@@ -149,11 +146,11 @@ h1 {
 }
 
 .text-input:focus {
-  border-color: #555;
+  border-color: #ffffff;
 }
 
 .text-input::placeholder {
-  color: #444;
+  color: #444444;
 }
 
 .btn {
@@ -161,9 +158,9 @@ h1 {
   align-items: center;
   justify-content: center;
   padding: 8px 18px;
-  background: #161616;
-  color: #ddd;
-  border: 1px solid #303030;
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #282828;
   font-size: 0.8rem;
   font-family: inherit;
   cursor: pointer;
@@ -174,20 +171,12 @@ h1 {
 }
 
 .btn:hover:not(:disabled) {
-  background: #242424;
-  border-color: #555;
-  color: #fff;
-}
-
-.btn:active:not(:disabled) {
-  background: #fff;
-  color: #000;
-  border-color: #fff;
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
 }
 
 .btn-yoink {
-  background: #1f1f1f;
-  border-color: #383838;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -210,9 +199,9 @@ h1 {
 
 .chip {
   padding: 6px 12px;
-  background: #141414;
-  border: 1px solid #262626;
-  color: #777;
+  background: #000000;
+  border: 1px solid #282828;
+  color: #777777;
   font-size: 0.74rem;
   font-family: inherit;
   cursor: pointer;
@@ -224,46 +213,44 @@ h1 {
 }
 
 .chip:hover {
-  background: #1c1c1c;
-  border-color: #444;
-  color: #bbb;
+  border-color: #ffffff;
+  color: #ffffff;
 }
 
 .chip.active {
-  background: #242424;
-  border-color: #555;
-  color: #fff;
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
   font-weight: 500;
 }
 
 .playlist-chip {
-  color: #777;
+  color: #777777;
 }
 
 .chip-indicator {
   width: 8px;
   height: 8px;
-  border: 1px solid #444;
+  border: 1px solid #444444;
   display: inline-block;
   transition: all 0.15s ease;
 }
 
 .playlist-chip.active {
-  background: #192419;
-  border-color: #2e5939;
-  color: #4ade80;
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
 }
 
 .playlist-chip.active .chip-indicator {
-  border-color: #4ade80;
-  background: #4ade80;
-  box-shadow: 0 0 6px rgba(74, 222, 128, 0.45);
+  border-color: #000000;
+  background: #000000;
 }
 
 .error-msg {
   margin-top: 10px;
   font-size: 0.74rem;
-  color: #ff5555;
+  color: #ffffff;
 }
 
 /* Downloads Section */
@@ -275,7 +262,7 @@ h1 {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  border-bottom: 1px solid #1c1c1c;
+  border-bottom: 1px solid #282828;
   padding-bottom: 10px;
   margin-bottom: 12px;
 }
@@ -285,12 +272,12 @@ h2 {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #666;
+  color: #777777;
 }
 
 .item-count {
   font-size: 0.72rem;
-  color: #444;
+  color: #444444;
 }
 
 .queue-list {
@@ -304,26 +291,23 @@ h2 {
   color: #3a3a3a;
   font-size: 0.78rem;
   padding: 30px 0;
-  border: 1px dashed #1a1a1a;
+  border: 1px dashed #282828;
   margin-top: 4px;
 }
 
 /* Job Card */
 .job-card {
-  background: rgba(17, 17, 17, 0.75);
-  border: 1px solid #202020;
+  background: #000000;
+  border: 1px solid #282828;
   padding: 12px 14px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  backdrop-filter: blur(6px);
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-  animation: fadeIn 0.15s ease;
+  transition: border-color 0.15s ease;
 }
 
 .job-card:hover {
-  background: rgba(24, 24, 24, 0.9);
-  border-color: #333;
+  border-color: #ffffff;
 }
 
 @keyframes fadeIn {
@@ -339,7 +323,7 @@ h2 {
 }
 
 .job-title {
-  color: #e2e2e2;
+  color: #ffffff;
   font-size: 0.84rem;
   font-weight: 500;
   white-space: nowrap;
@@ -360,46 +344,57 @@ h2 {
   font-size: 0.72rem;
   font-family: inherit;
   text-decoration: none;
-  background: #141414;
-  border: 1px solid #262626;
+  background: #000000;
+  border: 1px solid #282828;
   cursor: pointer;
   letter-spacing: 0.02em;
   transition: all 0.15s ease;
-}
-
-.action-download {
-  color: #4db8ff;
+  color: #ffffff;
 }
 
 .action-download:hover {
-  background: #4db8ff;
-  color: #000;
-  border-color: #4db8ff;
-}
-
-.action-delete {
-  color: #666;
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
 }
 
 .action-delete:hover {
-  background: #ff5555;
-  color: #000;
-  border-color: #ff5555;
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
 }
 
 /* Minimal Square Progress Bar */
 .progress-wrap {
   width: 100%;
   height: 2px;
-  background: #1c1c1c;
+  background: #282828;
   overflow: hidden;
+  position: relative;
 }
 
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: #4ade80;
+  background: #ffffff;
   transition: width 0.15s ease-out;
+}
+
+.progress-bar.warming {
+  width: 100% !important;
+  background: repeating-linear-gradient(
+    90deg,
+    #ffffff 0,
+    #ffffff 15px,
+    #282828 15px,
+    #282828 30px
+  );
+  animation: warmingGlow 1s linear infinite;
+}
+
+@keyframes warmingGlow {
+  0% { background-position: 0 0; }
+  100% { background-position: 30px 0; }
 }
 
 .job-meta-row {
@@ -407,26 +402,14 @@ h2 {
   justify-content: space-between;
   align-items: baseline;
   font-size: 0.72rem;
-  color: #666;
-}
-
-.job-status-text {
-  font-variant-numeric: tabular-nums;
+  color: #777777;
 }
 
 .job-status-badge {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #777;
-}
-
-.job-status-badge.completed {
-  color: #4ade80;
-}
-
-.job-status-badge.failed {
-  color: #ff5555;
+  color: #ffffff;
 }
 
 /* Toast */
@@ -435,9 +418,9 @@ h2 {
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%) translateY(10px);
-  background: #141414;
-  border: 1px solid #2f2f2f;
-  color: #ccc;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  color: #000000;
   font-size: 0.75rem;
   padding: 6px 14px;
   opacity: 0;

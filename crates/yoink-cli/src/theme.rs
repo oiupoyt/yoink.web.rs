@@ -37,14 +37,14 @@ impl Theme {
         match mode {
             ThemeMode::Auto | ThemeMode::Dark => Self {
                 mode,
-                // KAT Square Minimalist Obsidian palette
-                background: Color::Rgb(11, 11, 11),  // #0b0b0b
-                surface: Color::Rgb(17, 17, 17),     // #111111
-                border: Color::Rgb(34, 34, 34),      // #222222
-                primary: Color::Rgb(245, 245, 245),  // crisp white
-                secondary: Color::Rgb(140, 140, 140),// muted gray
-                accent_emerald: Color::Rgb(16, 185, 129), // #10b981
-                accent_cyan: Color::Rgb(56, 189, 248),    // #38bdf8
+                // Monochrome & Minimalist
+                background: Color::Rgb(0, 0, 0),        // #000000
+                surface: Color::Rgb(15, 15, 15),       // #0f0f0f
+                border: Color::Rgb(40, 40, 40),        // #282828
+                primary: Color::Rgb(255, 255, 255),    // white
+                secondary: Color::Rgb(120, 120, 120),  // gray
+                accent_emerald: Color::Rgb(255, 255, 255), // white
+                accent_cyan: Color::Rgb(255, 255, 255),    // white
             },
             ThemeMode::Light => Self {
                 mode,

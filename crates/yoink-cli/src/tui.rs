@@ -59,8 +59,19 @@ pub async fn run_interactive(initial_url: Option<String>, out_dir: Option<PathBu
             .unwrap_or_else(|| PathBuf::from("."))
     });
 
-    // Check clipboard for initial URL if none provided
-    if initial_url.is_none() {
+    // Monochrome & Minimal Theme
+    let theme_colors = [
+        Color::White,   // Main
+        Color::Gray,    // Secondary
+        Color::DarkGray,// Borders
+        Color::Black,   // Background
+    ];
+    let style_normal = Style::default().fg(Color::Gray);
+    let style_highlight = Style::default().fg(Color::White).add_modifier(Modifier::BOLD);
+    let style_active = Style::default().fg(Color::White).add_modifier(Modifier::BOLD);
+    let block_style = Style::default().fg(Color::DarkGray);
+
+    // Function to apply monochrome styling to UI components
         if let Ok(mut clipboard) = arboard::Clipboard::new() {
             if let Ok(text) = clipboard.get_text() {
                 let trimmed = text.trim();

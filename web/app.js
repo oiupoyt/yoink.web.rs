@@ -204,9 +204,10 @@
     if (type === 'Probing') {
       badge.textContent = 'probing';
       statusTextEl.textContent = data.status || 'probing metadata…';
-      bar.style.width = '10%';
+      bar.classList.add('warming');
     } else if (type === 'Downloading') {
       badge.textContent = 'downloading';
+      bar.classList.remove('warming');
       const downloaded = data.downloaded_bytes || 0;
       const total = data.total_bytes || 0;
 
