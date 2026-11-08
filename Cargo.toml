@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/yoink-core",
+    "crates/yoink-cli",
+    "crates/yoink-web",
+]
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+strip = "symbols"
+panic = "abort"

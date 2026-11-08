@@ -1,0 +1,17 @@
+[package]
+name = "yoink-web"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+yoink-core = { path = "../yoink-core" }
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rust-embed = "8"
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+ipnet = "2"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+uuid = { version = "1", features = ["v4"] }
