@@ -40,16 +40,7 @@ impl Downloader for YtDlpEngine {
 
         let handle = tokio::spawn(async move {
             let mut args = Vec::new();
-            if let Some(json_path) = &req.info_json_path {
-                if json_path.exists() {
-                    args.push("--load-info-json".to_string());
-                    args.push(json_path.to_string_lossy().to_string());
-                } else {
-                    args.push(req.url.clone());
-                }
-            } else {
-                args.push(req.url.clone());
-            }
+            args.push(req.url.clone());
 
             for arg in &req.choice.args {
                 args.push(arg.clone());
